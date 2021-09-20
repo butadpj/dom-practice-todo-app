@@ -1,17 +1,12 @@
+
 let input = document.querySelector('form input');
 let addBtn = document.querySelector('.add-btn');
-
-let inputVal = '';
-
-// Set the inputVal everytime the user inputs something
-input.addEventListener('input', (e) => {
-  inputVal = e.target.value;
-});
+let inputValue = ''; 
 
 const resetInput = () => {
   // Reset input value and do focus
   input.value = '';
-  inputVal = '';
+  inputValue = '';
   input.focus();
 };
 
@@ -50,7 +45,7 @@ const createElements = () => {
 
   // Create a todo element with a text based on the input value - li
   let newTodo = document.createElement('li');
-  newTodo.innerText = `${inputVal} `;
+  newTodo.innerText = `${inputValue} `;
 
   let buttonsWrapper = document.createElement('div');
 
@@ -74,7 +69,7 @@ const createElements = () => {
 };
 
 const addTodo = () => {
-  if (!inputVal) {
+  if (!inputValue) {
     // If input is empty
     input.focus();
   } else {
@@ -83,7 +78,14 @@ const addTodo = () => {
   }
 };
 
-addBtn.addEventListener('click', (e) => {
-  e.preventDefault(); // Prevent page reload if submit button is pressed
-  addTodo();
-});
+
+window.onload = () => {
+  addBtn.addEventListener('click', (e) => {
+    e.preventDefault(); // Prevent page reload if submit button is pressed
+    addTodo();
+  });
+
+  input.addEventListener('input', (e) => {
+    inputValue = e.target.value;
+  });
+}
